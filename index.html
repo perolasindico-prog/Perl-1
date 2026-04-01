@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TELEPRÊMIO - Resgate Seus Prêmios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#E8A000',
+                            green: '#2EBD59',
+                            'green-dark': '#1FA44A',
+                            teal: '#1A7A6E',
+                            navy: '#1A2332',
+                            red: '#E53535',
+                            bg: '#F3F4F6',
+                            muted: '#6B7280',
+                            border: '#E5E7EB',
+                            blue: '#2563EB',
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Outfit', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { font-family: 'Inter', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+
+        .btn-green {
+            background: linear-gradient(135deg, #2EBD59 0%, #1FA44A 100%);
+            box-shadow: 0 4px 14px rgba(46, 189, 89, 0.35), 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        }
+        .btn-green:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(46, 189, 89, 0.45); }
+        .btn-green:active { transform: scale(0.98); }
+        .btn-green:focus-visible { outline: 2px solid #2EBD59; outline-offset: 3px; }
+
+        .pulse-dot { animation: pulse 1.5s ease-in-out infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.4); }
+        }
+
+        .comment-card {
+            background: #fff;
+            border: 1px solid #E5E7EB;
+            border-radius: 14px;
+            transition: transform 0.15s ease;
+        }
+        .comment-card:hover { transform: translateY(-1px); }
+
+        .live-badge {
+            background: #E53535;
+            box-shadow: 0 0 0 3px rgba(229, 53, 53, 0.2);
+        }
+
+        .video-placeholder {
+            background: #000;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .btn-pulse { animation: btnPulse 1.4s ease-in-out infinite; }
+        @keyframes btnPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(46, 189, 89, 0.35); }
+            50% { transform: scale(1.04); box-shadow: 0 6px 30px rgba(46, 189, 89, 0.6); }
+        }
+    </style>
+</head>
+<body class="bg-brand-bg min-h-screen">
+
+    <div class="max-w-[480px] mx-auto bg-white min-h-screen shadow-lg shadow-black/5">
+
+        <!-- Header -->
+        <header class="flex items-center justify-between px-4 py-3 border-b border-brand-border">
+            <div class="flex items-center gap-2">
+                <!-- Logo icon box -->
+                <div class="bg-brand-orange rounded-lg w-[42px] h-[42px] flex flex-col items-center justify-center leading-none">
+                    <span class="text-white text-[9px] font-bold tracking-wider uppercase">tele</span>
+                    <span class="text-white text-[9px] font-bold tracking-wider uppercase">prêmio</span>
+                </div>
+                <span class="font-heading font-extrabold text-[20px] tracking-[-0.02em]"><span class="text-brand-navy">TELE</span><span class="text-brand-orange">PRÊMIO</span></span>
+            </div>
+            <div class="text-right leading-tight">
+                <span class="text-[10px] text-brand-muted block">EM PARCERIA COM A</span>
+                <a href="#" class="text-[11px] font-bold text-brand-blue underline">TVSUCESSO</a>
+            </div>
+        </header>
+
+        <!-- Headline -->
+        <section class="px-5 pt-7 pb-5 text-center">
+            <h1 class="font-heading font-extrabold text-[26px] leading-[1.2] tracking-[-0.02em] text-brand-navy">
+                ASSISTA ATÉ AO FINAL<br>
+                PARA SABER COMO<br>
+                <span class="text-brand-orange">RESGATAR SEUS<br>PRÊMIOS</span> RAPIDAMENTE
+            </h1>
+        </section>
+
+        <!-- Live indicator + viewer count -->
+        <div class="px-5 pb-3">
+            <div class="bg-white border border-brand-border rounded-xl px-4 py-2.5 flex items-center justify-between">
+                <div class="live-badge rounded-full px-3 py-1 flex items-center gap-1.5">
+                    <span class="w-2 h-2 bg-white rounded-full pulse-dot inline-block"></span>
+                    <span class="text-white text-[11px] font-bold tracking-wide">AO VIVO</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-brand-muted text-[13px]">
+                    <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span class="font-medium">2.847 pessoas assistindo agora</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Area — REPLACE WITH VTURB EMBED -->
+        <div class="px-5 pb-5">
+            <div class="video-placeholder aspect-video flex items-center justify-center" id="vturb-video">
+                <!-- ============================================== -->
+                <!-- COLE SEU CÓDIGO VTURB AQUI                     -->
+                <!-- Apague este bloco placeholder e cole o iframe  -->
+                <!-- ============================================== -->
+                <div class="text-center text-white/50 p-8">
+                    <svg class="w-16 h-16 mx-auto mb-3 opacity-40" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <p class="text-sm font-medium">Vídeo Vturb aqui</p>
+                    <p class="text-xs mt-1 opacity-50">Substitua este bloco pelo código embed do Vturb</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="px-5 pb-7">
+            <a href="#" class="btn-green btn-pulse block w-full text-center text-white font-heading font-extrabold text-[18px] py-4 rounded-2xl tracking-wide uppercase">
+                FAZER A VERIFICAÇÃO
+            </a>
+        </div>
+
+        <!-- Comments Section -->
+        <section class="bg-brand-bg px-5 py-6">
+            <div class="flex items-center gap-2 mb-0.5">
+                <svg class="w-5 h-5 text-brand-navy" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span class="font-heading font-bold text-brand-navy text-[16px]">Comentários</span>
+            </div>
+            <p class="text-brand-muted text-[13px] mb-4">47 pessoas comentaram</p>
+
+            <div class="space-y-3">
+
+                <!-- Comment 1: Maria João -->
+                <div class="comment-card p-4">
+                    <div class="flex items-center gap-3 mb-2.5">
+                        <img src="assets/maria.jpg" alt="Maria João" class="avatar">
+                        <div>
+                            <span class="font-bold text-[14px] text-brand-navy">Maria João</span>
+                            <span class="text-[11px] text-brand-muted ml-1.5 bg-gray-100 px-2 py-0.5 rounded-full">2h</span>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-gray-700 leading-[1.65]">
+                        Ainda estou em choque 😭<br>
+                        <strong>Participei no TelePrêmio e hoje recebi 15.000 MZN como prêmio!</strong><br>
+                        Achei que nunca ia ganhar, mas aconteceu mesmo. Obrigada 🙏 ✨
+                    </p>
+                    <div class="flex items-center gap-5 mt-3 pt-2.5 border-t border-gray-100 text-brand-muted text-[12px]">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            247
+                        </span>
+                        <span>Responder</span>
+                        <span class="flex items-center gap-1 ml-auto">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                            Partilhar
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Comment 2: Nelson Matavele -->
+                <div class="comment-card p-4">
+                    <div class="flex items-center gap-3 mb-2.5">
+                        <img src="assets/nelson.jpg" alt="Nelson Matavele" class="avatar">
+                        <div>
+                            <span class="font-bold text-[14px] text-brand-navy">Nelson Matavele</span>
+                            <span class="text-[11px] text-brand-muted ml-1.5 bg-gray-100 px-2 py-0.5 rounded-full">4h</span>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-gray-700 leading-[1.65]">
+                        Pessoal, é real sim.<br>
+                        Entrei no TelePrêmio, participei no sorteio e <strong>ganhei 8.500 MZN em poucos dias.</strong><br>
+                        Vale a pena tentar!
+                    </p>
+                    <div class="flex items-center gap-5 mt-3 pt-2.5 border-t border-gray-100 text-brand-muted text-[12px]">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            189
+                        </span>
+                        <span>Responder</span>
+                        <span class="flex items-center gap-1 ml-auto">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                            Partilhar
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Comment 3: Helena Cossa -->
+                <div class="comment-card p-4">
+                    <div class="flex items-center gap-3 mb-2.5">
+                        <img src="assets/helena.jpg" alt="Helena Cossa" class="avatar">
+                        <div>
+                            <span class="font-bold text-[14px] text-brand-navy">Helena Cossa</span>
+                            <span class="text-[11px] text-brand-muted ml-1.5 bg-gray-100 px-2 py-0.5 rounded-full">6h</span>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-gray-700 leading-[1.65]">
+                        A minha filha insistiu para eu participar e eu duvidei...<br>
+                        <strong>Ontem fui surpreendida com 12.300 MZN em prêmio</strong> 😳<br>
+                        Nunca pensei que fosse ganhar!
+                    </p>
+                    <div class="flex items-center gap-5 mt-3 pt-2.5 border-t border-gray-100 text-brand-muted text-[12px]">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            156
+                        </span>
+                        <span>Responder</span>
+                        <span class="flex items-center gap-1 ml-auto">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                            Partilhar
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Comment 4: Carlos Mucavele -->
+                <div class="comment-card p-4">
+                    <div class="flex items-center gap-3 mb-2.5">
+                        <img src="assets/carlos.jpg" alt="Carlos Mucavele" class="avatar">
+                        <div>
+                            <span class="font-bold text-[14px] text-brand-navy">Carlos Mucavele</span>
+                            <span class="text-[11px] text-brand-muted ml-1.5 bg-gray-100 px-2 py-0.5 rounded-full">8h</span>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-gray-700 leading-[1.65]">
+                        Trabalho na Matola e participei no TelePrêmio quase sem expectativas.<br>
+                        <strong>Este mês já ganhei mais de 20.000 MZN em prêmios.</strong> 💪🍊<br>
+                        Quando a sorte bate, muda tudo.
+                    </p>
+                    <div class="flex items-center gap-5 mt-3 pt-2.5 border-t border-gray-100 text-brand-muted text-[12px]">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            312
+                        </span>
+                        <span>Responder</span>
+                        <span class="flex items-center gap-1 ml-auto">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                            Partilhar
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Comment 5: Rosa Nhantumbo -->
+                <div class="comment-card p-4">
+                    <div class="flex items-center gap-3 mb-2.5">
+                        <img src="assets/rosa.jpg" alt="Rosa Nhantumbo" class="avatar">
+                        <div>
+                            <span class="font-bold text-[14px] text-brand-navy">Rosa Nhantumbo</span>
+                            <span class="text-[11px] text-brand-muted ml-1.5 bg-gray-100 px-2 py-0.5 rounded-full">1d</span>
+                        </div>
+                    </div>
+                    <p class="text-[13px] text-gray-700 leading-[1.65]">
+                        Estava desempregada e esse prêmio veio na hora certa.<br>
+                        <strong>Na semana passada ganhei 9.750 MZN no TelePrêmio.</strong><br>
+                        Sou muito grata 🙏 ✨
+                    </p>
+                    <div class="flex items-center gap-5 mt-3 pt-2.5 border-t border-gray-100 text-brand-muted text-[12px]">
+                        <span class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            98
+                        </span>
+                        <span>Responder</span>
+                        <span class="flex items-center gap-1 ml-auto">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+                            Partilhar
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-brand-border px-5 py-5 text-center">
+            <p class="text-[12px] text-brand-muted">&copy; 2026 TELEPRÊMIO. Todos os direitos reservados.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
