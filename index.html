@@ -168,6 +168,34 @@
                     var s=document.createElement("script"); s.src="https://scripts.converteai.net/98766aaf-bd72-4d17-9c9e-5395ec7d6b8b/players/69ccf202bdeb86fbc2c3811a/v4/player.js", s.async=!0,document.head.appendChild(s);
                 </script>
             </div>
+            <script>
+                // Force white background on Vturb callaction (Shadow DOM)
+                function fixCallactionBg() {
+                    // Normal DOM
+                    document.querySelectorAll('.callaction, .callaction--outside, [class*="callaction"]').forEach(el => {
+                        el.style.setProperty('background', '#fff', 'important');
+                        el.style.setProperty('background-color', '#fff', 'important');
+                    });
+                    // Shadow DOM inside vturb-smartplayer
+                    const player = document.querySelector('vturb-smartplayer');
+                    if (player && player.shadowRoot) {
+                        player.shadowRoot.querySelectorAll('.callaction, .callaction--outside, [class*="callaction"]').forEach(el => {
+                            el.style.setProperty('background', '#fff', 'important');
+                            el.style.setProperty('background-color', '#fff', 'important');
+                        });
+                        // Inject style into shadow root
+                        if (!player.shadowRoot.querySelector('#fix-callaction-style')) {
+                            const style = document.createElement('style');
+                            style.id = 'fix-callaction-style';
+                            style.textContent = '.callaction, .callaction--outside, [class*="callaction"] { background: #fff !important; background-color: #fff !important; }';
+                            player.shadowRoot.appendChild(style);
+                        }
+                    }
+                }
+                // Run repeatedly to catch when player loads
+                const fixInterval = setInterval(fixCallactionBg, 500);
+                setTimeout(() => clearInterval(fixInterval), 30000);
+            </script>
         </div>
 
         <!-- Comments Section -->
